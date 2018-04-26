@@ -12,20 +12,20 @@
 <div id="container">
     <form action = "StudentControllerServlet" method="GET">
 
-        <input type="hidden" name = "command" value="ADD">
+        <input type="hidden" name = "command" value="ADD"/>
 
         <table class="table-fillAdd">
             <tr>
                 <td><label>First Name: </label></td>
-                <td><input type="text" name = "firstName" required></td>
+                <td><input type="text" name = "firstName" required/></td>
             </tr>
             <tr>
                 <td><label>Last Name: </label></td>
-                <td><input type="text" name = "lastName" required></td>
+                <td><input type="text" name = "lastName" required/></td>
             </tr>
             <tr>
                 <td><label>Email: </label></td>
-                <td><input type="text" name = "email" required></td>
+                <td><input type="text" name = "email" required/></td>
             </tr>
         </table>
         <br/><br/>

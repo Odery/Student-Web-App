@@ -1,10 +1,7 @@
 package web_student;
 
 import javax.sql.DataSource;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -57,6 +54,25 @@ public class StudentDataUtil {
             }
         } catch (SQLException exc) {
             exc.getErrorCode();
+        }
+    }
+
+    public void addStudent(Student student) {
+
+        Connection connection = null;
+        PreparedStatement statement = null;
+
+        try {
+            connection = dataSource.getConnection();
+            statement = connection.prepareStatement("INSERT INTO students (first_name,last_name,email) VALUE (?,?,?);");
+            statement.setString(1,student.getFirstName());
+            statement.setString(2,student.getLastName());
+            statement.setString(3,student.getEmail());
+            statement.execute();
+        }catch (SQLException exc){
+            exc.getErrorCode();
+        }finally {
+            close(connection,statement,null);
         }
     }
 }

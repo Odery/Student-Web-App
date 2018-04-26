@@ -16,7 +16,7 @@
 </div>
 <div id = "container">
     <div id = "content">
-        <table>
+        <table class="table-fill">
             <tr>
                 <th class="text-left">ID</th>
                 <th class="text-left">First Name</th>
@@ -32,6 +32,9 @@
             </tr>
             </c:forEach>
         </table>
+        <br/><br/>
+        <input type="button" value="Add Student" onclick = "window.location.href = 'add-student-form.jsp'; return false;"
+               class="button" style="background-color:#42cc8c;">
     </div>
 </div>
 </body>

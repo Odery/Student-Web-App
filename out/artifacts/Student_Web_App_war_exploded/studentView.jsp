@@ -1,5 +1,4 @@
-<%@ page import ="java.util.List, web_student.*"%>
-<% List<Student> students = (List<Student>) request.getAttribute("students");%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <html>
 <head>
     <title>
@@ -24,14 +23,14 @@
                 <th class="text-left">Last Name</th>
                 <th class="text-left">Email</th>
             </tr>
-            <%for(Student student: students){%>
+            <c:forEach var="student" items="${students}">
             <tr>
-                <td class="text-left"><%=student.getId()%></td>
-                <td class="text-left"><%=student.getFirstName()%></td>
-                <td class="text-left"><%=student.getLastName()%></td>
-                <td class="text-left"><%=student.getEmail()%></td>
+                <td class="text-left">${student.id}</td>
+                <td class="text-left">${student.firstName}</td>
+                <td class="text-left">${student.lastName}</td>
+                <td class="text-left">${student.email}</td>
             </tr>
-            <%}%>
+            </c:forEach>
         </table>
     </div>
 </div>

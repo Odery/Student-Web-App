@@ -1,5 +1,6 @@
 package web_student;
 
+import javax.servlet.ServletException;
 import javax.sql.DataSource;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -78,5 +79,35 @@ public class StudentDataUtil {
         }finally {
             close(connection,statement,null);
         }
+    }
+
+    public Student getStudent(String studentId) throws ServletException {
+        Student student = null;
+        Connection connection = null;
+        PreparedStatement statement = null;
+        ResultSet resultSet = null;
+        try {
+            connection = dataSource.getConnection();
+            statement = connection.prepareStatement("SELECT * FROM student WHERE id = ? ;");
+            statement.setInt(1,Integer.parseInt(studentId));
+
+            resultSet = statement.executeQuery();
+            if (resultSet.next()){
+                student = new Student();
+
+                student.setFirstName(resultSet.getString("first_name"));
+                student.setLastName(resultSet.getString("last_name"));
+                student.setEmail(resultSet.getString("email"));
+                student.setId(resultSet.getInt("id"));
+
+            }else {
+                throw new ServletException("No such student in db! id:"+studentId);
+            }
+        }catch (SQLException exc){
+            exc.printStackTrace();
+        }finally {
+            close(connection,statement,resultSet);
+        }
+        return student;
     }
 }

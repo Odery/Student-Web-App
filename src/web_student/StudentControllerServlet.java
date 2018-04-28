@@ -40,11 +40,25 @@ public class StudentControllerServlet extends HttpServlet {
             case "LOAD":
                 loadStudent(request,response);
                 break;
+            case "UPDATE":
+                updateStudent(request,response);
+                break;
             default:
                 listStudents(request,response);
                 break;
         }
 
+    }
+
+    private void updateStudent(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        Student student = new Student();
+        student.setId(Integer.parseInt(request.getParameter("id")));
+        student.setFirstName(request.getParameter("firstName"));
+        student.setLastName(request.getParameter("lastName"));
+        student.setEmail(request.getParameter("email"));
+
+        studentDataUtil.updateStudent(student);
+        listStudents(request,response);
     }
 
     private void loadStudent(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

@@ -110,4 +110,22 @@ public class StudentDataUtil {
         }
         return student;
     }
+
+    public void updateStudent(Student student) {
+        Connection connection = null;
+        PreparedStatement statement = null;
+
+        try {
+            connection = dataSource.getConnection();
+            statement = connection.prepareStatement("UPDATE students SET first_name = ?, last_name = ?, email = ? WHERE id = ? ;");
+            statement.setInt(4,student.getId());
+            statement.setString(1,student.getFirstName());
+            statement.setString(2,student.getLastName());
+            statement.setString(3,student.getEmail());
+        }catch (SQLException exc){
+            exc.getErrorCode();
+        }finally {
+            close(connection,statement,null);
+        }
+    }
 }

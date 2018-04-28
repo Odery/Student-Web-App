@@ -117,11 +117,12 @@ public class StudentDataUtil {
 
         try {
             connection = dataSource.getConnection();
-            statement = connection.prepareStatement("UPDATE students SET first_name = ?, last_name = ?, email = ? WHERE id = ? ;");
+            statement = connection.prepareStatement("UPDATE student SET first_name = ?, last_name = ?, email = ? WHERE id = ? ;");
             statement.setInt(4,student.getId());
             statement.setString(1,student.getFirstName());
             statement.setString(2,student.getLastName());
             statement.setString(3,student.getEmail());
+            statement.executeUpdate();
         }catch (SQLException exc){
             exc.getErrorCode();
         }finally {

@@ -25,7 +25,8 @@
                 <th class="text-left">Action</th>
             </tr>
             <c:forEach var="student" items="${students}">
-                <c:url var="update-url" value="StudentControllerServlet">
+
+                <c:url var="command_update" value="StudentControllerServlet">
                     <c:param name="command" value="LOAD"/>
                     <c:param name="id" value="${student.id}"/>
                 </c:url>
@@ -34,7 +35,7 @@
                 <td class="text-left">${student.firstName}</td>
                 <td class="text-left">${student.lastName}</td>
                 <td class="text-left">${student.email}</td>
-                <td class="text-left">${update-url}</td>
+                <td class="text-left"><a href="${command_update}">Update</a> </td>
             </tr>
             </c:forEach>
         </table>

@@ -22,13 +22,20 @@
                 <th class="text-left">First Name</th>
                 <th class="text-left">Last Name</th>
                 <th class="text-left">Email</th>
+                <th class="text-left">Action</th>
             </tr>
             <c:forEach var="student" items="${students}">
+
+                <c:url var="command_update" value="StudentControllerServlet">
+                    <c:param name="command" value="LOAD"/>
+                    <c:param name="id" value="${student.id}"/>
+                </c:url>
             <tr>
                 <td class="text-left">${student.id}</td>
                 <td class="text-left">${student.firstName}</td>
                 <td class="text-left">${student.lastName}</td>
                 <td class="text-left">${student.email}</td>
+                <td class="text-left"><a href="${command_update}">Update</a> </td>
             </tr>
             </c:forEach>
         </table>

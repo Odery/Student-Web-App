@@ -30,12 +30,21 @@
                     <c:param name="command" value="LOAD"/>
                     <c:param name="id" value="${student.id}"/>
                 </c:url>
+
+                <c:url var="command_delete" value="StudentControllerServlet">
+                    <c:param name="command" value="DELETE"/>
+                    <c:param name="id" value="${student.id}"/>
+                </c:url>
             <tr>
                 <td class="text-left">${student.id}</td>
                 <td class="text-left">${student.firstName}</td>
                 <td class="text-left">${student.lastName}</td>
                 <td class="text-left">${student.email}</td>
-                <td class="text-left"><a href="${command_update}">Update</a> </td>
+                <td class="text-left">
+                    <a href="${command_update}">Update</a>
+                    |
+                    <a href="${command_delete}" onclick="if(!(confirm('Are you sure? All data will be deleted!'))) return false">Delete</a>
+                </td>
             </tr>
             </c:forEach>
         </table>

@@ -129,4 +129,20 @@ public class StudentDataUtil {
             close(connection,statement,null);
         }
     }
+
+    public void deleteStudent(int id) {
+        Connection connection = null;
+        PreparedStatement statement = null;
+
+        try {
+            connection = dataSource.getConnection();
+            statement = connection.prepareStatement("DELETE FROM student WHERE id = ? ;");
+            statement.setInt(1,id);
+            statement.executeUpdate();
+        }catch (SQLException exc){
+            exc.getErrorCode();
+        }finally {
+            close(connection,statement,null);
+        }
+    }
 }
